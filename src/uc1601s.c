@@ -97,7 +97,7 @@ const char chargen[];
 void LCD_init(void)
 {
   GPIO_InitTypeDef gpio_port;
-	uint8_t lcdconf[] = {SET_BIAS_RATIO_7, SET_BIAS_POT, 120, SET_MAPPING_CONTROL(0,MIRROR_X), SET_DISPL_ENABLE};
+	uint8_t lcdconf[] = {SET_BIAS_RATIO_9, SET_BIAS_POT, 100, SET_MAPPING_CONTROL(0,MIRROR_Y), SET_DISPL_ENABLE};
 	
 	
   //Init reset pin (PC0)
@@ -125,24 +125,12 @@ void LCD_init(void)
 
 #ifdef LCD154
   {
-    //Set LCD Bias Ratio 11(9) - between V_LCD and V_D,
-    //Set VBIAS Potentiometer (double-byte command) 120
-    //Mirror X SEG/Column sequence inversion ON
-    //Display On
-//    uint8_t buf[] ={ 0b11101011, 0b10000001, 120, 0b11000010, 0b10101111};
-/*
-		lcdBuff[0] = SET_BIAS_RATIO_8;
-		lcdBuff[1] = SET_BIAS_POT;
-		lcdBuff[2] = 120;
-		lcdBuff[3] = SET_MAPPING_CONTROL(0,0);
-		lcdBuff[4] = SET_DISPL_ENABLE;
-		*/
-		I2C_WrBuf(LcdCmd, lcdconf, sizeof(lcdconf));
+ 		I2C_WrBuf(LcdCmd, lcdconf, sizeof(lcdconf));
   }
 #else
   {
     // same as for LCD154 but with Mirror X SEG/Column sequence inversion OFF
-//    uint8_t buf[] = { 0b11101011, 0b10000001, 120, 0b11000000, 0b10101111 };
+    uint8_t buf[] = { 0b11101011, 0b10000001, 120, 0b11000000, 0b10101111 };
 		lcdBuff[0] = SET_BIAS_RATIO_9;
 		lcdBuff[1] = SET_BIAS_POT;
 		lcdBuff[2] = 120;
