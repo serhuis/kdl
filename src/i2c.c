@@ -344,6 +344,8 @@ static uint32_t I2C_Start(void) {
 
   //When start condition is generated SB is set and clock is stretched.
   //To activate the clock again i)read SR1 ii)write something to DR (e.g. address)
+	
+//	printf("I2C started");
   return WaitSR1FlagsSet(I2C_SR1_SB);  //Wait till SB is set
 
 /*

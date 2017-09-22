@@ -538,7 +538,7 @@ void LCD_symbol(char code, uint8_t width, uint8_t height, inverse_type inverse)
 {
 	uint8_t lcdBuff[4] = {0};
   uint8_t vert_offset, b, a, c, z, widthf, heightf;
-  uint32_t buf, fon, vline, mask, mask1, mask2;
+  uint32_t buf, fon, vline=0, mask, mask1, mask2;
   uint16_t chargen_index = (code - 0x20) * 5; // character generator(chargen) consists of symbols strating
   //from 0x20 symbol (space). 5 - count of bytes, that determinate char:
   // each byte is vertical pixels(at total 5x8 pixels for one character)
@@ -547,7 +547,7 @@ void LCD_symbol(char code, uint8_t width, uint8_t height, inverse_type inverse)
   heightf = height & 0x01; // hight only 0 or 1
 
   // vertical offset
-  if ((cursorY / 8) == 0)
+  if (0 == (cursorY >> 3))
   {
     vert_offset = cursorY % 8;
   }
@@ -563,7 +563,7 @@ void LCD_symbol(char code, uint8_t width, uint8_t height, inverse_type inverse)
     {
       if ((uint8_t) inverse)
       {
-        vline = ~(uint8_t) chargen[chargen_index + b];
+        vline = (uint8_t) ~chargen[chargen_index + b];
       }
       else
       {
@@ -802,18 +802,18 @@ void LCD_cursor(uint8_t x, uint8_t y)
   cursorY = y;
   cursorX = x;
 
-/*
-	if ((y / 8) == 0)
+
+	if (0==(y / 8))
     y = (y / 8);
   else
     y = (y / 8) - 1;
-*/
+
 // setup page, Set Column Address LSB,  Set Column Address MSB
 //    uint8_t buf[] = { 0b10110000 | y, x & 0b00001111, (x >> 4) | 0b00010000 };
 //		I2C_WrBuf(0x70, buf, sizeof(buf));
 
 
-//	y = (y>>3) ? (y>>3)-1 : y>>3;
+//	y = (0==(y>>3)) ? y>>3 : (y>>3)-1;
 		
 	lcdBuffer[0] = SET_PAGE_ADDR(y);
 	lcdBuffer[1] = SET_COL_ADDR_LSB(x & 0x0f);

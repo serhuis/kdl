@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\kdl.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\kdl.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Thu Sep 21 16:49:53 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Fri Sep 22 16:50:02 2017
 <BR><P>
 <H3>Maximum Stack Usage =        320 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -642,7 +642,7 @@ Global Symbols
 <LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_IRQHandler
 </UL>
 
-<P><STRONG><a name="[7e]"></a>LCD_cursor</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, uc1601s.o(i.LCD_cursor))
+<P><STRONG><a name="[7e]"></a>LCD_cursor</STRONG> (Thumb, 66 bytes, Stack size 8 bytes, uc1601s.o(i.LCD_cursor))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = LCD_cursor &rArr; I2C_WrBuf &rArr; WaitSR1FlagsSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrBuf
@@ -703,7 +703,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_IRQHandler
 </UL>
 
-<P><STRONG><a name="[87]"></a>LCD_symbol</STRONG> (Thumb, 636 bytes, Stack size 56 bytes, uc1601s.o(i.LCD_symbol))
+<P><STRONG><a name="[87]"></a>LCD_symbol</STRONG> (Thumb, 638 bytes, Stack size 56 bytes, uc1601s.o(i.LCD_symbol))
 <BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = LCD_symbol &rArr; LCD_cursor &rArr; I2C_WrBuf &rArr; WaitSR1FlagsSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_cursor
@@ -746,7 +746,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_md_vl.o(.text)
 </UL>
-<P><STRONG><a name="[26]"></a>TIM2_IRQHandler</STRONG> (Thumb, 290 bytes, Stack size 32 bytes, main.o(i.TIM2_IRQHandler))
+<P><STRONG><a name="[26]"></a>TIM2_IRQHandler</STRONG> (Thumb, 314 bytes, Stack size 32 bytes, main.o(i.TIM2_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 320<LI>Call Chain = TIM2_IRQHandler &rArr; LCD_rect &rArr; LCD_line &rArr; LCD_pixel &rArr; I2C_RdBuf &rArr; I2C_Read &rArr; WaitSR1FlagsSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;tool_strlen

@@ -51,12 +51,13 @@ void TIM2_IRQHandler(void) {
       LCD_string("5x15", 0, 0, FONT_TYPE_5x15, INVERSE_TYPE_NOINVERSE);
       break;
     case 3:
-      LCD_string("10x8", 0, 0, FONT_TYPE_10x8, INVERSE_TYPE_NOINVERSE);
+      LCD_rect(LINE_TYPE_BLACK, ANGLE_TYPE_RECT, 1, FILL_TYPE_BLACK, 0, 0, 132, 64); //tool_strlen(string) * 6 + 5 - calculate rect width for place str
+      LCD_string("ACHTUNG!!!", 15, 25, FONT_TYPE_10x15, INVERSE_TYPE_INVERSE);
       break;
     case 4: {
       char *string = "5x8i";
       LCD_rect(LINE_TYPE_BLACK, ANGLE_TYPE_ROUNDED, 1, FILL_TYPE_BLACK, 8, 8,
-          tool_strlen(string) * 6 + 5, 13); //tool_strlen(string) * 6 + 5 - calculate rect width for place str
+          tool_strlen(string) * 6 + 5, 15); //tool_strlen(string) * 6 + 5 - calculate rect width for place str
       LCD_string("5x8i", 10, 10, FONT_TYPE_5x8, INVERSE_TYPE_INVERSE);
       break;
     }
