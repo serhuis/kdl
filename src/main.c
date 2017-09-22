@@ -1,13 +1,51 @@
 //#include "stm32f10x.h"
 
+#include <stdio.h>
+#include "cmsis_os.h"
+
 #include "main.h"
+
+
 #include "inc/uc1601s.h"
 
 
 uint8_t i = 0;
 
-int main(void) {
+void Thread_LCD(void const *pvParameters);
+
+osThreadDef(Thread_LCD, osPriorityNormal, 1, 0);
+
+int Init_Thread (void) {
+
+	osThreadId tid_Thread_LCD;
+  
+	tid_Thread_LCD = osThreadCreate (osThread(Thread_LCD), NULL);
+  if(!tid_Thread_LCD) return(-1);
 	
+  return(0);
+}
+
+void Thread_LCD(void const *pvParameters) {
+
+	
+	LCD_init();
+
+	for (;;) {
+		
+		LCD_clear();
+		LCD_string("RDX0154 with", 10, 30, FONT_TYPE_5x15, INVERSE_TYPE_NOINVERSE);
+		LCD_string("RTX kernel", 20, 10, FONT_TYPE_5x15, INVERSE_TYPE_NOINVERSE);
+		osDelay (1000);
+
+
+	}
+
+}
+
+
+
+int main(void) {
+/*	
   TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
   NVIC_InitTypeDef NVIC_InitStructure;
 		
@@ -31,6 +69,17 @@ int main(void) {
   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
   NVIC_Init(&NVIC_InitStructure);
+*/
+
+//	Init_Timers();
+
+
+	Init_Thread();
+	if (!osKernelRunning ())  {                    // is the kernel running ?
+    if (osKernelStart () != osOK)  {             // start the kernel
+                                                 // kernel could not be started
+    }
+  }
 
   while (1) {}; // Infinity loop
 }

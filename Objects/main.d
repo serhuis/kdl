@@ -1,8 +1,11 @@
 .\objects\main.o: src\main.c
+.\objects\main.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\RTOS\RTX\INC\cmsis_os.h
+.\objects\main.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\main.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\main.o: .\src\inc\main.h
 .\objects\main.o: d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include\stm32f10x.h
 .\objects\main.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\Include\core_cm3.h
-.\objects\main.o: d:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\main.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\Include\core_cminstr.h
 .\objects\main.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\Include\cmsis_armcc.h
 .\objects\main.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\Include\core_cmfunc.h
