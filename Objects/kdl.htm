@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\kdl.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\kdl.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Fri Sep 22 18:10:50 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060183: Last Updated: Mon Sep 25 18:16:31 2017
 <BR><P>
 <H3>Maximum Stack Usage =        240 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -649,7 +649,6 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2C_WrBuf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_init
-<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Thread_LCD
 <LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_IRQHandler
 </UL>
 
@@ -767,13 +766,12 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[26]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM2_IRQHandler
 </UL>
 
-<P><STRONG><a name="[48]"></a>Thread_LCD</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, main.o(i.Thread_LCD))
+<P><STRONG><a name="[48]"></a>Thread_LCD</STRONG> (Thumb, 120 bytes, Stack size 8 bytes, main.o(i.Thread_LCD))
 <BR><BR>[Stack]<UL><LI>Max Depth = 124<LI>Call Chain = Thread_LCD &rArr; LCD_init &rArr; I2C_LowLevel_Init &rArr; I2C_Init &rArr; RCC_GetClocksFreq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_string
 <LI><a href="#[82]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_init
-<LI><a href="#[80]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LCD_clear
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.constdata)
 </UL>

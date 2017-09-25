@@ -67,4 +67,7 @@ void LCD_line(line_type line_type, uint8_t x0, uint8_t y0, uint8_t x1, uint8_t y
 void LCD_rect(line_type frame_type, angle_type ang_type, uint8_t border_width,
     fill_type fill, uint8_t x0, uint8_t y0, uint8_t width, uint8_t height);
 
+void LCD_putc (char symbol);
+void LCD_update(void);
+
 #endif //__UC1601S_H
