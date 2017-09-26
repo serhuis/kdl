@@ -90,7 +90,7 @@
 //   <i> Initialize thread stack with watermark pattern for analyzing stack usage (current/maximum) in System and Thread Viewer.
 //   <i> Enabling this option increases significantly the execution time of osThreadCreate.
 #ifndef OS_STKINIT
-#define OS_STKINIT      0
+#define OS_STKINIT      1
 #endif
  
 //   <o>Processor mode for thread execution 
@@ -117,7 +117,7 @@
 //   <i> When the Cortex-M SysTick timer is used, the input clock 
 //   <i> is on most systems identical with the core clock.
 #ifndef OS_CLOCK
- #define OS_CLOCK       8000000
+ #define OS_CLOCK       32000000
 #endif
  
 //   <o>RTX Timer tick interval value [us] <1-1000000>

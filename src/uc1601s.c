@@ -522,7 +522,7 @@ void LCD_string(char *str, uint8_t x, uint8_t y, font_type font,
       break;
   }
 
-  LCD_cursor(x, y);
+  LCD_cursor(x, (LCD_HEIGHT-9)-y);
   while (str[ptr] != 0)
     LCD_symbol(str[ptr++], width, height, inverse);
 }

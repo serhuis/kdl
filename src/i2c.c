@@ -355,7 +355,6 @@ static uint32_t I2C_Start(void) {
   //When start condition is generated SB is set and clock is stretched.
   //To activate the clock again i)read SR1 ii)write something to DR (e.g. address)
 	
-	printf("I2C started");
   return WaitSR1FlagsSet(I2C_SR1_SB);  //Wait till SB is set
 
 /*
@@ -375,11 +374,10 @@ static uint32_t WaitSR1FlagsSet (uint32_t Flags) {
   uint32_t TimeOut = HSI_VALUE;
 
   while(((I2Cx->SR1) & Flags) != Flags) {
-    if (!(TimeOut--)) {
-			printf("I2C Timeout %d\n", TimeOut);
-    	while(1); //todo
-    	 printf("I2C Error %d\n", Flags);
-      return 1;
+    if (0==(TimeOut--)) {
+//    	while(1);
+			printf("I2C WaitSR1FlagsSet ERROR: %d\n", TimeOut);
+      return -1;
     }
   }
   return 0;

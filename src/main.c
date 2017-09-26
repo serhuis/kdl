@@ -24,14 +24,17 @@ int Init_Thread (void) {
 	
   return(0);
 }
-
+char str[256] = "Hello, world!!!";
 void Thread_LCD(void const *pvParameters) {
 
-	char str[] = {0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6, 0xA7, 0xA8, 0xA9, 0};
+	int i=0;
 	LCD_init();
+	printf("LCD init complete\n\r");
 
 	for (;;) {
+		printf("Thread_LCD started!\n\r");
 		
+		sprintf(str, "—четчик: %d", i++);
 
 //		LCD_line(LINE_TYPE_BLACK, 0, 0, LCD_WIDTH-1, 0);
 //		LCD_line(LINE_TYPE_BLACK, LCD_WIDTH-1, 0, LCD_WIDTH-1, LCD_HEIGHT-1);
@@ -39,15 +42,12 @@ void Thread_LCD(void const *pvParameters) {
 //		LCD_line(LINE_TYPE_BLACK, 0, LCD_HEIGHT-1, 0,0);
 		
 //		LCD_WIDTH
-/*		LCD_string(str,  0,  0, FONT_TYPE_5x8, INVERSE_TYPE_NOINVERSE);
-*/		LCD_string("X= 8, Y= 8, X= 8, Y= 8", 0,  8, FONT_TYPE_5x8, INVERSE_TYPE_INVERSE);
-		LCD_string("X=16, Y=16", 0, 16, FONT_TYPE_5x8, INVERSE_TYPE_NOINVERSE);
-		LCD_string("X=24, Y=24", 0, 24, FONT_TYPE_5x8, INVERSE_TYPE_INVERSE);
-		LCD_string("X=32, Y=32", 0, 32, FONT_TYPE_5x8, INVERSE_TYPE_NOINVERSE);
-		LCD_string("X=40, Y=40", 0, 40, FONT_TYPE_5x8, INVERSE_TYPE_INVERSE);
-		LCD_string("X=48, Y=48", 0, 48, FONT_TYPE_5x8, INVERSE_TYPE_NOINVERSE);
-		LCD_string("X=56, Y=56", 0, 56, FONT_TYPE_5x8, INVERSE_TYPE_INVERSE);
-
+		LCD_string(str,  0,  0, FONT_TYPE_5x8, (i&INVERSE_TYPE_INVERSE));
+		LCD_string("X= 8, Y= 10, X= 8, Y= 8", 0,  10, FONT_TYPE_5x8, INVERSE_TYPE_INVERSE);
+		LCD_string("X=16, Y=20", 0, 20, FONT_TYPE_5x8, INVERSE_TYPE_NOINVERSE);
+		LCD_string("X=24, Y=30", 0, 30, FONT_TYPE_5x8, INVERSE_TYPE_INVERSE);
+		LCD_string("X=32, Y=40", 0, 40, FONT_TYPE_5x8, INVERSE_TYPE_NOINVERSE);
+		LCD_string("X=40, Y=50", 0, 50, FONT_TYPE_5x8, INVERSE_TYPE_INVERSE);
 
 		osDelay (1000);
 
@@ -59,7 +59,7 @@ void Thread_LCD(void const *pvParameters) {
 
 
 int main(void) {
-	
+/*
   TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
   NVIC_InitTypeDef NVIC_InitStructure;
 		
@@ -83,7 +83,7 @@ int main(void) {
   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
   NVIC_Init(&NVIC_InitStructure);
-
+*/
 
 //	Init_Timers();
 

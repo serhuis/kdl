@@ -28,11 +28,11 @@ Project File Date:  09/26/2017
 *** Using Compiler 'V5.06 update 2 (build 183)', folder: 'd:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
 compiling main.c...
-src\main.c(30): warning:  #177-D: variable "str" was declared but never referenced
-  	char str[] = {0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6, 0xA7, 0xA8, 0xA9, 0};
+src\main.c(45): warning:  #188-D: enumerated type mixed with another type
+  		LCD_string(str,  0,  0, FONT_TYPE_5x8, (i&INVERSE_TYPE_INVERSE));
 src\main.c: 1 warning, 0 errors
 linking...
-Program Size: Code=10000 RO-data=1508 RW-data=120 ZI-data=3064  
+Program Size: Code=9840 RO-data=1508 RW-data=376 ZI-data=3064  
 ".\Objects\kdl.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -47,11 +47,11 @@ Package Vendor: ARM
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.ARM_Compiler.1.1.1.pack
-                Keil::Compiler:I/O:STDOUT:ITM:1.1.0
+                Keil::Compiler:I/O:STDIN:ITM:1.1.0
                 Keil ARM Compiler extensions
+   * Component: STDIN Variant: ITM Version: 1.1.0
    * Component: STDOUT Variant: ITM Version: 1.1.0
    * Component: STDERR Variant: ITM Version: 1.1.0
-   * Component: STDIN Variant: ITM Version: 1.1.0
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.STM32L1xx_DFP.1.0.2.pack
@@ -72,19 +72,22 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.0.0
 
    * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.0
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
-      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
-      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
+      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
+      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
       Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
-      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
       Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM3.lib
+
+   * Component: Keil::Compiler:I/O:STDIN:ITM:1.1.0
+      Source file:   Source\retarget_io.c
 
    * Component: Keil::Compiler:I/O:STDOUT:ITM:1.1.0
       Source file:   Source\retarget_io.c
@@ -92,13 +95,10 @@ Package Vendor: Keil
    * Component: Keil::Compiler:I/O:STDERR:ITM:1.1.0
       Source file:   Source\retarget_io.c
 
-   * Component: Keil::Compiler:I/O:STDIN:ITM:1.1.0
-      Source file:   Source\retarget_io.c
-
    * Component: Keil::Device:Startup:1.0.0
       Source file:   Device\Source\ARM\STM32L1xx_MD_OPT.s
-      Include file:  Device\Include\stm32l1xx.h
       Source file:   Device\Source\ARM\startup_stm32l1xx_md.s
+      Include file:  Device\Include\stm32l1xx.h
       Source file:   Device\Source\system_stm32l1xx.c
 Build Time Elapsed:  00:00:01
 </pre>
