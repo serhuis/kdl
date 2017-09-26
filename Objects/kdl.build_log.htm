@@ -17,7 +17,7 @@ Library Manager: ArmAr.exe V5.06 update 2 (build 183)
 Hex Converter:   FromElf.exe V5.06 update 2 (build 183)
 CPU DLL:         SARMCM3.DLL V5.20
 Dialog DLL:      DCM.DLL V1.13.7.0
-Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.18.0
+Target DLL:      UL2CM3.DLL V1.157.18.0
 Dialog DLL:      TCM.DLL V1.14.9.0
  
 <h2>Project:</h2>
@@ -26,14 +26,31 @@ Project File Date:  09/22/2017
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 2 (build 183)', folder: 'd:\Keil_v5\ARM\ARMCC\Bin'
-Build target 'Target 1'
+Rebuild target 'Target 1'
+compiling i2c.c...
+src\i2c.c(1): error:  #5: cannot open source input file "stm32f10x.h": No such file or directory
+  #include "stm32f10x.h"
+src\i2c.c: 0 warnings, 1 error
 compiling main.c...
-src\main.c(30): warning:  #177-D: variable "str" was declared but never referenced
-  	char str[] = {0xA0, 0xA1, 0xA2, 0xA3, 0xA4, 0xA5, 0xA6, 0xA7, 0xA8, 0xA9, 0};
-src\main.c: 1 warning, 0 errors
-linking...
-Program Size: Code=10088 RO-data=1552 RW-data=96 ZI-data=3952  
-".\Objects\kdl.axf" - 0 Error(s), 1 Warning(s).
+.\src\inc\main.h(6): error:  #5: cannot open source input file "stm32f10x.h": No such file or directory
+  #include "stm32f10x.h"
+src\main.c: 0 warnings, 1 error
+compiling tools.c...
+src\tools.c(3): error:  #5: cannot open source input file "stm32f10x.h": No such file or directory
+  #include "stm32f10x.h"
+src\tools.c: 0 warnings, 1 error
+compiling uc1601s.c...
+.\src\inc\main.h(6): error:  #5: cannot open source input file "stm32f10x.h": No such file or directory
+  #include "stm32f10x.h"
+src\uc1601s.c: 0 warnings, 1 error
+assembling startup_stm32l1xx_md.s...
+compiling retarget_io.c...
+compiling RTX_Conf_CM.c...
+compiling system_stm32l1xx.c...
+d:\Keil_v5\ARM\PACK\Keil\STM32L1xx_DFP\1.0.2\Device\Include\stm32l1xx.h(6638): error:  #5: cannot open source input file "stm32l1xx_conf.h": No such file or directory
+    #include "stm32l1xx_conf.h"
+RTE\Device\STM32L152RB\system_stm32l1xx.c: 0 warnings, 1 error
+".\Objects\kdl.axf" - 5 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -42,99 +59,75 @@ Package Vendor: ARM
                 ::CMSIS:RTOS:1.0 (API)
                 CMSIS (Cortex Microcontroller Software Interface Standard)
    * Component: RTOS Version: 1.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.ARM_Compiler.1.1.1.pack
+                Keil::Compiler:I/O:STDOUT:User:1.1.0
+                Keil ARM Compiler extensions
+   * Component: STDOUT Variant: User Version: 1.1.0
+   * Component: STDERR Variant: User Version: 1.1.0
+   * Component: STDIN Variant: User Version: 1.1.0
    * Component: CORE Version: 5.0.0
    * Component: Keil RTX Version: 4.81.0
 
 Package Vendor: Keil
-                http://www.keil.com/pack/Keil.STM32F1xx_DFP.2.1.0.pack
+                http://www.keil.com/pack/Keil.STM32L1xx_DFP.1.0.2.pack
                 Keil::Device:Startup:1.0.0
-                STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
+                STMicroelectronics STM32L1 Series Device Support and Examples
    * Component: Startup Version: 1.0.0
-   * Component: GPIO Version: 1.2
-   * Component: DMA Version: 1.2
-   * Component: Framework Version: 3.5.1
-   * Component: GPIO Version: 3.5.0
-   * Component: TIM Version: 3.5.0
-   * Component: RCC Version: 3.5.0
-   * Component: I2C Version: 3.5.0
-   * Component: DMA Version: 3.5.0
-   * Component: USART Version: 3.5.0
 
 <h2>Collection of Component include folders:</h2>
   E:\_ARTON_PROJ\KDL\soft\RTE
-  E:\_ARTON_PROJ\KDL\soft\RTE\Device\STM32F100RB
   d:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\Include
   d:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\RTOS\RTX\INC
-  d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\Include
-  d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\Device\StdPeriph_Driver\inc
-  d:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.1.0\RTE_Driver
+  d:\Keil_v5\ARM\PACK\Keil\STM32L1xx_DFP\1.0.2\Device\Include
 
 <h2>Collection of Component Files used:</h2>
 
    * Component: ::CMSIS:RTOS:1.0 (API)
 
+   * Component: Keil::Compiler:I/O:STDOUT:User:1.1.0
+      Source file:   Template\stdout_user.c
+      Source file:   Template\stdout_display.c
+      Source file:   Template\stdout_USART.c
+      Source file:   Source\retarget_io.c
+
+   * Component: Keil::Compiler:I/O:STDERR:User:1.1.0
+      Source file:   Source\retarget_io.c
+      Source file:   Template\stderr_user.c
+      Source file:   Template\stderr_USART.c
+      Source file:   Template\stderr_display.c
+
+   * Component: Keil::Compiler:I/O:STDIN:User:1.1.0
+      Source file:   Source\retarget_io.c
+      Source file:   Template\stdin_user.c
+      Source file:   Template\stdin_USART.c
+      Source file:   Template\stdin_keyboard.c
+
    * Component: ARM::CMSIS:CORE:5.0.0
 
    * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.0
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
-      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
-      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM3.lib
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
       Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
       Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
       Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
+      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
+      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM3.lib
 
    * Component: Keil::Device:Startup:1.0.0
-      Source file:   Device\Source\ARM\startup_stm32f10x_md_vl.s
-      Source file:   Device\Source\ARM\STM32F1xx_OPT.s
-      Include file:  RTE_Driver\Config\RTE_Device.h
-      Source file:   Device\Source\system_stm32f10x.c
-
-   * Component: Keil::Device:GPIO:1.2
-      Source file:   RTE_Driver\GPIO_STM32F10x.c
-      Include file:  RTE_Driver\GPIO_STM32F10x.h
-
-   * Component: Keil::Device:DMA:1.2
-      Source file:   RTE_Driver\DMA_STM32F10x.c
-      Include file:  RTE_Driver\DMA_STM32F10x.h
-
-   * Component: Keil::Device:StdPeriph Drivers:Framework:3.5.1
-      Source file:   Device\StdPeriph_Driver\src\misc.c
-      Source file:   Device\StdPeriph_Driver\templates\stm32f10x_conf.h
-      Include file:  Device\StdPeriph_Driver\inc\misc.h
-      Include file:  Device\StdPeriph_Driver\templates\stm32f10x_it.h
-      Source file:   Device\StdPeriph_Driver\templates\stm32f10x_it.c
-
-   * Component: Keil::Device:StdPeriph Drivers:GPIO:3.5.0
-      Include file:  Device\StdPeriph_Driver\inc\stm32f10x_gpio.h
-      Source file:   Device\StdPeriph_Driver\src\stm32f10x_gpio.c
-
-   * Component: Keil::Device:StdPeriph Drivers:TIM:3.5.0
-      Include file:  Device\StdPeriph_Driver\inc\stm32f10x_tim.h
-      Source file:   Device\StdPeriph_Driver\src\stm32f10x_tim.c
-
-   * Component: Keil::Device:StdPeriph Drivers:RCC:3.5.0
-      Include file:  Device\StdPeriph_Driver\inc\stm32f10x_rcc.h
-      Source file:   Device\StdPeriph_Driver\src\stm32f10x_rcc.c
-
-   * Component: Keil::Device:StdPeriph Drivers:I2C:3.5.0
-      Source file:   Device\StdPeriph_Driver\src\stm32f10x_i2c.c
-      Include file:  Device\StdPeriph_Driver\inc\stm32f10x_i2c.h
-
-   * Component: Keil::Device:StdPeriph Drivers:DMA:3.5.0
-      Include file:  Device\StdPeriph_Driver\inc\stm32f10x_dma.h
-      Source file:   Device\StdPeriph_Driver\src\stm32f10x_dma.c
-
-   * Component: Keil::Device:StdPeriph Drivers:USART:3.5.0
-      Include file:  Device\StdPeriph_Driver\inc\stm32f10x_usart.h
-      Source file:   Device\StdPeriph_Driver\src\stm32f10x_usart.c
-Build Time Elapsed:  00:00:00
+      Include file:  Device\Include\stm32l1xx.h
+      Source file:   Device\Source\ARM\STM32L1xx_MD_OPT.s
+      Source file:   Device\Source\ARM\startup_stm32l1xx_md.s
+      Source file:   Device\Source\system_stm32l1xx.c
+Target not created.
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
