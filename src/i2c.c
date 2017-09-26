@@ -1,4 +1,7 @@
-#include "stm32f10x.h"
+//#include "stm32f10x.h"
+
+#include <stdio.h>
+#include "stm32l1xx.h"
 #include "inc/i2c.h"
 
 //Internal functions
@@ -11,9 +14,11 @@ static uint32_t WaitLineIdle(void);
 
 //GPIO and I2C Peripheral
 #define I2Cx                      I2C1  //Selected I2C peripheral
-#define RCC_APB1Periph_I2Cx       RCC_APB1Periph_I2C1 //Bus where the peripheral is connected
-#define RCC_AHB1Periph_GPIO_SCL   RCC_APB2Periph_GPIOB  //Bus for GPIO Port of SCL
-#define RCC_AHB1Periph_GPIO_SDA   RCC_APB2Periph_GPIOB  //Bus for GPIO Port of SDA
+
+
+#define RCC_Periph_I2Cx       RCC_APB1Periph_I2C1 //Bus where the peripheral is connected
+#define RCC_Periph_GPIO_SCL   RCC_AHBPeriph_GPIOB  //Bus for GPIO Port of SCL
+#define RCC_Periph_GPIO_SDA   RCC_AHBPeriph_GPIOB  //Bus for GPIO Port of SDA
 #define GPIO_SCL                  GPIOB
 #define GPIO_SDA                  GPIOB
 #define GPIO_Pin_SCL              GPIO_Pin_6
@@ -25,30 +30,35 @@ void I2C_LowLevel_Init(void) {
   I2C_InitTypeDef   I2C_InitStructure;
 
   //Enable the i2c
-  RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2Cx, ENABLE);
+  RCC_APB1PeriphClockCmd(RCC_Periph_I2Cx, ENABLE);
   //Reset the Peripheral
-  RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2Cx, ENABLE);
-  RCC_APB1PeriphResetCmd(RCC_APB1Periph_I2Cx, DISABLE);
+  RCC_APB1PeriphResetCmd(RCC_Periph_I2Cx, ENABLE);
+  RCC_APB1PeriphResetCmd(RCC_Periph_I2Cx, DISABLE);
 
   //Enable the GPIOs for the SCL/SDA Pins
-  RCC_APB2PeriphClockCmd(RCC_AHB1Periph_GPIO_SCL | RCC_AHB1Periph_GPIO_SDA, ENABLE);
+  RCC_AHBPeriphClockCmd(RCC_Periph_GPIO_SCL, ENABLE);
 
   //Configure and initialize the GPIOs
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_SCL;
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_OD;
-  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+	GPIO_InitStructure.GPIO_PuPd =  GPIO_PuPd_UP;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_40MHz;
   GPIO_Init(GPIO_SCL, &GPIO_InitStructure);
 
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_SDA;
   GPIO_Init(GPIO_SDA, &GPIO_InitStructure);
 
-  //Configure and Initialize the I2C
+	GPIO_PinAFConfig(GPIO_SCL, GPIO_PinSource6, GPIO_AF_I2C1);
+	GPIO_PinAFConfig(GPIO_SDA, GPIO_PinSource7, GPIO_AF_I2C1);
+
+	//Configure and Initialize the I2C
   I2C_InitStructure.I2C_Mode = I2C_Mode_I2C;
   I2C_InitStructure.I2C_DutyCycle = I2C_DutyCycle_2;
   I2C_InitStructure.I2C_OwnAddress1 = 0x00; //We are the master. We don't need this
   I2C_InitStructure.I2C_Ack = I2C_Ack_Enable;
   I2C_InitStructure.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
-  I2C_InitStructure.I2C_ClockSpeed = 400000;  //400kHz (Fast Mode) (
+  I2C_InitStructure.I2C_ClockSpeed = 399000;  //400kHz (Fast Mode) (
 
   //Initialize the Peripheral
   I2C_Init(I2Cx, &I2C_InitStructure);
@@ -70,7 +80,7 @@ void I2C_LowLevel_DeInit(void) {
 
   //GPIO configuration
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_SCL;
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
   GPIO_Init(GPIO_SCL, &GPIO_InitStructure);
 
   GPIO_InitStructure.GPIO_Pin = GPIO_Pin_SDA;
@@ -345,7 +355,7 @@ static uint32_t I2C_Start(void) {
   //When start condition is generated SB is set and clock is stretched.
   //To activate the clock again i)read SR1 ii)write something to DR (e.g. address)
 	
-//	printf("I2C started");
+	printf("I2C started");
   return WaitSR1FlagsSet(I2C_SR1_SB);  //Wait till SB is set
 
 /*
@@ -366,8 +376,9 @@ static uint32_t WaitSR1FlagsSet (uint32_t Flags) {
 
   while(((I2Cx->SR1) & Flags) != Flags) {
     if (!(TimeOut--)) {
+			printf("I2C Timeout %d\n", TimeOut);
     	while(1); //todo
-    	// panic(Flags, "I2C Error\n");
+    	 printf("I2C Error %d\n", Flags);
       return 1;
     }
   }

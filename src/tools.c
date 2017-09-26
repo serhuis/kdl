@@ -1,6 +1,6 @@
 //#include "stm32f10x.h"
-//#include "stm32l1xx.h"
-#include "stm32f10x.h"
+#include "stm32l1xx.h"
+//#include "stm32f10x.h"
 #include "inc/tools.h"
 
 void tool_delay_ms(uint32_t ms)

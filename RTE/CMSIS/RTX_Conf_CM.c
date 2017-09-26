@@ -154,7 +154,7 @@
 // ==============
 //   <i> Enables user Timers
 #ifndef OS_TIMERS
- #define OS_TIMERS      1
+ #define OS_TIMERS      0
 #endif
  
 //   <o>Timer Thread Priority

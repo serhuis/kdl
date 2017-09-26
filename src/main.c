@@ -59,7 +59,7 @@ void Thread_LCD(void const *pvParameters) {
 
 
 int main(void) {
-/*	
+	
   TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
   NVIC_InitTypeDef NVIC_InitStructure;
 		
@@ -83,7 +83,7 @@ int main(void) {
   NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
   NVIC_Init(&NVIC_InitStructure);
-*/
+
 
 //	Init_Timers();
 

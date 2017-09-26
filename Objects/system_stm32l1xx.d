@@ -6,3 +6,17 @@
 .\objects\system_stm32l1xx.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\Include\cmsis_armcc.h
 .\objects\system_stm32l1xx.o: d:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\Include\core_cmfunc.h
 .\objects\system_stm32l1xx.o: d:\Keil_v5\ARM\PACK\Keil\STM32L1xx_DFP\1.0.2\Device\Include\system_stm32l1xx.h
+.\objects\system_stm32l1xx.o: ..\..\STM32L1xx_PLib\inc\stm32l1xx_conf.h
+.\objects\system_stm32l1xx.o: ..\..\STM32L1xx_PLib\inc\stm32l1xx_syscfg.h
+.\objects\system_stm32l1xx.o: d:\Keil_v5\ARM\PACK\Keil\STM32L1xx_DFP\1.0.2\Device\Include\stm32l1xx.h
+.\objects\system_stm32l1xx.o: ..\..\STM32L1xx_PLib\inc\stm32l1xx_adc.h
+.\objects\system_stm32l1xx.o: ..\..\STM32L1xx_PLib\inc\stm32l1xx_dac.h
+.\objects\system_stm32l1xx.o: ..\..\STM32L1xx_PLib\inc\stm32l1xx_dma.h
+.\objects\system_stm32l1xx.o: ..\..\STM32L1xx_PLib\inc\stm32l1xx_exti.h
+.\objects\system_stm32l1xx.o: ..\..\STM32L1xx_PLib\inc\stm32l1xx_flash.h
+.\objects\system_stm32l1xx.o: ..\..\STM32L1xx_PLib\inc\stm32l1xx_gpio.h
+.\objects\system_stm32l1xx.o: ..\..\STM32L1xx_PLib\inc\stm32l1xx_pwr.h
+.\objects\system_stm32l1xx.o: ..\..\STM32L1xx_PLib\inc\stm32l1xx_rcc.h
+.\objects\system_stm32l1xx.o: ..\..\STM32L1xx_PLib\inc\stm32l1xx_tim.h
+.\objects\system_stm32l1xx.o: ..\..\STM32L1xx_PLib\inc\stm32l1xx_usart.h
+.\objects\system_stm32l1xx.o: ..\..\STM32L1xx_PLib\inc\misc.h

@@ -227,9 +227,9 @@ ARM Macro Assembler    Page 4
 ]
   139 00000000                 IMPORT           __main
   140 00000000                 IMPORT           SystemInit
-  141 00000000 4809            LDR              R0, =SystemInit
+  141 00000000 4806            LDR              R0, =SystemInit
   142 00000002 4780            BLX              R0
-  143 00000004 4809            LDR              R0, =__main
+  143 00000004 4806            LDR              R0, =__main
   144 00000006 4700            BX               R0
   145 00000008                 ENDP
   146 00000008         
@@ -467,37 +467,25 @@ ARM Macro Assembler    Page 8
   293 0000001C         ;*******************************************************
                        ************************
   294 0000001C                 IF               :DEF:__MICROLIB
-  301 0000001C         
-  302 0000001C                 IMPORT           __use_two_region_memory
-  303 0000001C                 EXPORT           __user_initial_stackheap
-  304 0000001C         
-  305 0000001C         __user_initial_stackheap
-  306 0000001C         
-  307 0000001C 4804            LDR              R0, =  Heap_Mem
-  308 0000001E 4905            LDR              R1, =(Stack_Mem + Stack_Size)
-  309 00000020 4A05            LDR              R2, = (Heap_Mem +  Heap_Size)
-  310 00000022 4B06            LDR              R3, = Stack_Mem
-  311 00000024 4770            BX               LR
-  312 00000026         
-  313 00000026 00 00           ALIGN
-  314 00000028         
-  315 00000028                 ENDIF
-  316 00000028         
-  317 00000028                 END
+  295 0000001C         
+  296 0000001C                 EXPORT           __initial_sp
+  297 0000001C                 EXPORT           __heap_base
+  298 0000001C                 EXPORT           __heap_limit
+  299 0000001C         
+  300 0000001C                 ELSE
+  315                          ENDIF
+  316 0000001C         
+  317 0000001C                 END
               00000000 
-              00000000 
-              00000000 
-              00000400 
-              00000200 
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=.\objects\startup_stm32l1xx_md.d -o.\objects\startup_stm32l1xx_md.
 o -IE:\_ARTON_PROJ\KDL\soft\RTE -Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMS
 IS\Include -Id:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\RTOS\RTX\INC -Id:\
 Keil_v5\ARM\PACK\Keil\STM32L1xx_DFP\1.0.2\Device\Include --predefine="__RTX SET
-A 1" --predefine="__UVISION_VERSION SETA 520" --predefine="_RTE_ SETA 1" --pred
-efine="STM32L1XX_MD SETA 1" --list=.\listings\startup_stm32l1xx_md.lst RTE\Devi
-ce\STM32L152RB\startup_stm32l1xx_md.s
+A 1" --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 520" -
+-predefine="_RTE_ SETA 1" --predefine="STM32L1XX_MD SETA 1" --list=.\listings\s
+tartup_stm32l1xx_md.lst RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
 
 
 
@@ -518,9 +506,8 @@ Symbol: Stack_Mem
    Definitions
       At line 42 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
    Uses
-      At line 308 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
-      At line 310 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
-
+      None
+Comment: Stack_Mem unused
 __initial_sp 00000400
 
 Symbol: __initial_sp
@@ -528,7 +515,8 @@ Symbol: __initial_sp
       At line 43 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
    Uses
       At line 67 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
-Comment: __initial_sp used once
+      At line 296 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
+
 3 symbols
 
 
@@ -550,25 +538,24 @@ Symbol: Heap_Mem
    Definitions
       At line 54 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
    Uses
-      At line 307 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
-      At line 309 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
-
+      None
+Comment: Heap_Mem unused
 __heap_base 00000000
 
 Symbol: __heap_base
    Definitions
       At line 53 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
    Uses
-      None
-Comment: __heap_base unused
+      At line 297 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
+Comment: __heap_base used once
 __heap_limit 00000200
 
 Symbol: __heap_limit
    Definitions
       At line 55 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
    Uses
-      None
-Comment: __heap_limit unused
+      At line 298 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
+Comment: __heap_limit used once
 4 symbols
 
 
@@ -1168,15 +1155,7 @@ Symbol: WWDG_IRQHandler
       At line 85 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
       At line 193 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
 
-__user_initial_stackheap 0000001C
-
-Symbol: __user_initial_stackheap
-   Definitions
-      At line 305 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
-   Uses
-      At line 303 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
-Comment: __user_initial_stackheap used once
-58 symbols
+57 symbols
 
 
 
@@ -1190,8 +1169,7 @@ Symbol: Heap_Size
       At line 50 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
    Uses
       At line 54 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
-      At line 309 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
-
+Comment: Heap_Size used once
 Stack_Size 00000400
 
 Symbol: Stack_Size
@@ -1199,8 +1177,7 @@ Symbol: Stack_Size
       At line 39 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
    Uses
       At line 42 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
-      At line 308 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
-
+Comment: Stack_Size used once
 __Vectors_Size 000000F4
 
 Symbol: __Vectors_Size
@@ -1232,13 +1209,5 @@ Symbol: __main
    Uses
       At line 143 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
 Comment: __main used once
-__use_two_region_memory 00000000
-
-Symbol: __use_two_region_memory
-   Definitions
-      At line 302 in file RTE\Device\STM32L152RB\startup_stm32l1xx_md.s
-   Uses
-      None
-Comment: __use_two_region_memory unused
-3 symbols
-412 symbols in table
+2 symbols
+409 symbols in table

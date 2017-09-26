@@ -101,13 +101,13 @@ void LCD_init(void)
 	
 	
   //Init reset pin (PC0)
-  RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOB, ENABLE);
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
 
   gpio_port.GPIO_Pin = GPIO_Pin_8;
-  gpio_port.GPIO_Mode = GPIO_Mode_Out_PP;
-//	gpio_port.GPIO_OType = GPIO_OType_PP;
-  gpio_port.GPIO_Speed = GPIO_Speed_50MHz;
+  gpio_port.GPIO_Mode = GPIO_Mode_OUT;
+	gpio_port.GPIO_OType = GPIO_OType_PP;
+  gpio_port.GPIO_Speed = GPIO_Speed_40MHz;
   GPIO_Init(GPIOB, &gpio_port);
 
   GPIO_ResetBits(GPIOB, GPIO_Pin_8);
