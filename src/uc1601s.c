@@ -1,9 +1,9 @@
 //#include "stm32f10x.h"
 //#include "stm32l1xx.h"
 #include "main.h"
-#include "inc/uc1601s.h"
-#include "inc/i2c.h"
-#include "inc/tools.h"
+#include "uc1601s.h"
+#include "i2c.h"
+#include "tools.h"
 
 
 //

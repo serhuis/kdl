@@ -24,4 +24,4 @@
 .\objects\uc1601s.o: ..\..\STM32L1xx_PLib\inc\stm32l1xx_i2c.h
 .\objects\uc1601s.o: .\src\inc\uc1601s.h
 .\objects\uc1601s.o: .\src\inc\tools.h
-.\objects\uc1601s.o: src\inc/i2c.h
+.\objects\uc1601s.o: .\src\inc\i2c.h

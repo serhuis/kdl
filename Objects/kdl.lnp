@@ -3,6 +3,7 @@
 ".\objects\main.o"
 ".\objects\tools.o"
 ".\objects\uc1601s.o"
+".\objects\ui.o"
 "..\..\STM32L1xx_PLib\Objects\STM32L151_Lib.lib"
 ".\objects\rtx_conf_cm.o"
 "d:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\RTOS\RTX\LIB\ARM\RTX_CM3.lib"
