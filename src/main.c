@@ -5,9 +5,8 @@
 
 #include "main.h"
 
-
 #include "inc/uc1601s.h"
-
+#include "ui.h"
 
 uint8_t i = 0;
 
@@ -24,7 +23,18 @@ int Init_Thread (void) {
 	
   return(0);
 }
-char str[256] = "Hello, world!!!";
+
+//Variable strings
+char str[50] = "";
+
+//LCD "objects"
+const lcd_object strcnt = {.objtype = LCD_STR, .pstr = str, .x = 0, .y = 20, .font = FONT_TYPE_5x8};
+const lcd_object strKdl = {.objtype = LCD_STR, .pstr = "ÊÄË", .x = 40, .y = 8, .font = FONT_TYPE_10x15};
+const lcd_object strPowBy = {.objtype = LCD_STR, .pstr = "powered by", .x = 0, .y = 55,.font = FONT_TYPE_5x8};
+const lcd_object strRTX = {.objtype = LCD_STR, .pstr = "RTX", .x = 65, .y = 55, .font = FONT_TYPE_5x15};
+
+lcd_object* MainFrame[] ={(lcd_object*)&strcnt, (lcd_object*)&strKdl, (lcd_object*)&strPowBy, (lcd_object*)&strRTX} ;
+
 void Thread_LCD(void const *pvParameters) {
 
 	int i=0;
@@ -34,21 +44,26 @@ void Thread_LCD(void const *pvParameters) {
 	for (;;) {
 		printf("Thread_LCD started!\n\r");
 		
-		sprintf(str, "Ñ÷åò÷èê: %d", i++);
+		sprintf(str, "Ñ÷åò: %d", i++);
 
 //		LCD_line(LINE_TYPE_BLACK, 0, 0, LCD_WIDTH-1, 0);
 //		LCD_line(LINE_TYPE_BLACK, LCD_WIDTH-1, 0, LCD_WIDTH-1, LCD_HEIGHT-1);
 		//LCD_line(LINE_TYPE_BLACK, LCD_WIDTH-1, LCD_HEIGHT-1, 0, LCD_HEIGHT-1);
 //		LCD_line(LINE_TYPE_BLACK, 0, LCD_HEIGHT-1, 0,0);
 		
-//		LCD_WIDTH
-		LCD_string(str,  0,  0, FONT_TYPE_5x8, (i&INVERSE_TYPE_INVERSE));
+//		LCD_string(str,  0,  0, FONT_TYPE_5x8, (i&INVERSE_TYPE_INVERSE));
+		
+		LCD_Update(MainFrame, 4);
+		
+		
+		
+/*
 		LCD_string("X= 8, Y= 10, X= 8, Y= 8", 0,  10, FONT_TYPE_5x8, INVERSE_TYPE_INVERSE);
 		LCD_string("X=16, Y=20", 0, 20, FONT_TYPE_5x8, INVERSE_TYPE_NOINVERSE);
 		LCD_string("X=24, Y=30", 0, 30, FONT_TYPE_5x8, INVERSE_TYPE_INVERSE);
 		LCD_string("X=32, Y=40", 0, 40, FONT_TYPE_5x8, INVERSE_TYPE_NOINVERSE);
 		LCD_string("X=40, Y=50", 0, 50, FONT_TYPE_5x8, INVERSE_TYPE_INVERSE);
-
+*/
 		osDelay (1000);
 
 

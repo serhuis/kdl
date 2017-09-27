@@ -27,3 +27,4 @@
 .\objects\main.o: ..\..\STM32L1xx_PLib\inc\stm32l1xx_i2c.h
 .\objects\main.o: .\src\inc\uc1601s.h
 .\objects\main.o: .\src\inc\tools.h
+.\objects\main.o: .\src\inc\ui.h

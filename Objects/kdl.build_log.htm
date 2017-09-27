@@ -26,11 +26,47 @@ Project File Date:  09/26/2017
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 2 (build 183)', folder: 'd:\Keil_v5\ARM\ARMCC\Bin'
-Build Project 'kdl' - Target 'Target 1'
+Rebuild Project 'kdl' - Target 'Target 1'
+compiling tools.c...
+compiling i2c.c...
+E:\_ARTON_PROJ\KDL\soft\src\i2c.c(317): warning:  #111-D: statement is unreachable
+    I2C_SendData(I2Cx, byte);
+E:\_ARTON_PROJ\KDL\soft\src\i2c.c(320): warning:  #223-D: function "WaitEvent" declared implicitly
+    return WaitEvent(I2C_EVENT_MASTER_BYTE_TRANSMITTING);
+E:\_ARTON_PROJ\KDL\soft\src\i2c.c(380): warning:  #68-D: integer conversion resulted in a change of sign
+        return -1;
+E:\_ARTON_PROJ\KDL\soft\src\i2c.c(398): warning:  #111-D: statement is unreachable
+      	return 1;
+src\i2c.c: 4 warnings, 0 errors
+compiling main.c...
+E:\_ARTON_PROJ\KDL\soft\src\inc\ui.h(46): warning:  #64-D: declaration does not declare anything
+  		lcdobj_t ;
+E:\_ARTON_PROJ\KDL\soft\src\inc\ui.h(47): warning:  #64-D: declaration does not declare anything
+  		uint8_t ;
+E:\_ARTON_PROJ\KDL\soft\src\inc\ui.h(48): warning:  #64-D: declaration does not declare anything
+  		uint8_t ;
+src\main.c: 3 warnings, 0 errors
+compiling RTX_Conf_CM.c...
+compiling retarget_io.c...
+assembling startup_stm32l1xx_md.s...
 compiling ui.c...
+E:\_ARTON_PROJ\KDL\soft\src\inc\ui.h(46): warning:  #64-D: declaration does not declare anything
+  		lcdobj_t ;
+E:\_ARTON_PROJ\KDL\soft\src\inc\ui.h(47): warning:  #64-D: declaration does not declare anything
+  		uint8_t ;
+E:\_ARTON_PROJ\KDL\soft\src\inc\ui.h(48): warning:  #64-D: declaration does not declare anything
+  		uint8_t ;
+src\ui.c: 3 warnings, 0 errors
+compiling uc1601s.c...
+E:\_ARTON_PROJ\KDL\soft\src\uc1601s.c(295): warning:  #68-D: integer conversion resulted in a change of sign
+      ystep = -1;
+E:\_ARTON_PROJ\KDL\soft\src\uc1601s.c(454): warning:  #68-D: integer conversion resulted in a change of sign
+          ystep = -1;
+src\uc1601s.c: 2 warnings, 0 errors
+compiling system_stm32l1xx.c...
 linking...
-Program Size: Code=9840 RO-data=1508 RW-data=376 ZI-data=3064  
-".\Objects\kdl.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=9644 RO-data=1576 RW-data=140 ZI-data=4316  
+".\Objects\kdl.axf" - 0 Error(s), 12 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -44,11 +80,11 @@ Package Vendor: ARM
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.ARM_Compiler.1.1.1.pack
-                Keil::Compiler:I/O:STDIN:ITM:1.1.0
+                Keil::Compiler:I/O:STDERR:ITM:1.1.0
                 Keil ARM Compiler extensions
+   * Component: STDERR Variant: ITM Version: 1.1.0
    * Component: STDIN Variant: ITM Version: 1.1.0
    * Component: STDOUT Variant: ITM Version: 1.1.0
-   * Component: STDERR Variant: ITM Version: 1.1.0
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.STM32L1xx_DFP.1.0.2.pack
@@ -69,27 +105,27 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.0.0
 
    * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.0
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
-      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM3.lib
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
-      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
-      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
       Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
+      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
+      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
       Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM3.lib
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
+
+   * Component: Keil::Compiler:I/O:STDERR:ITM:1.1.0
+      Source file:   Source\retarget_io.c
 
    * Component: Keil::Compiler:I/O:STDIN:ITM:1.1.0
       Source file:   Source\retarget_io.c
 
    * Component: Keil::Compiler:I/O:STDOUT:ITM:1.1.0
-      Source file:   Source\retarget_io.c
-
-   * Component: Keil::Compiler:I/O:STDERR:ITM:1.1.0
       Source file:   Source\retarget_io.c
 
    * Component: Keil::Device:Startup:1.0.0

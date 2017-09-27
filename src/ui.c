@@ -13,11 +13,19 @@ typedef struct __lcd_string
 	font_type font;
 }lcd_string;
 */
-lcd_string strKdl = {
-				.pstr = "йдк",
-				.x = 0,
-				.y = 0,
-				.font = FONT_TYPE_10x15,};
+
+void LCD_Update (lcd_object** obj, uint8_t cnt)
+{
+	uint8_t i;
+	lcd_object* tempobj = *obj;
+	for (i=0; i<cnt; i++)
+	{
+		if(LCD_STR == (tempobj->objtype))
+			LCD_string(tempobj->pstr, tempobj->x, tempobj->y, tempobj->font, INVERSE_TYPE_NOINVERSE);
+		
+		
+		++tempobj;
+	}
 
 
-lcd_string *MainFrame[] ={&strKdl} ;
+}
