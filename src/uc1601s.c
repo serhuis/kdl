@@ -802,20 +802,19 @@ void LCD_cursor(uint8_t x, uint8_t y)
   cursorY = y;
   cursorX = x;
 
-
+/*
 	if (0==(y / 8))
     y = (y / 8);
   else
     y = (y / 8) - 1;
-
+*/
 // setup page, Set Column Address LSB,  Set Column Address MSB
 //    uint8_t buf[] = { 0b10110000 | y, x & 0b00001111, (x >> 4) | 0b00010000 };
 //		I2C_WrBuf(0x70, buf, sizeof(buf));
 
 
-//	y = (0==(y>>3)) ? y>>3 : (y>>3)-1;
-		
-	lcdBuffer[0] = SET_PAGE_ADDR(y);
+
+	lcdBuffer[0] = SET_PAGE_ADDR(y>>3);
 	lcdBuffer[1] = SET_COL_ADDR_LSB(x & 0x0f);
 	lcdBuffer[2] = SET_COL_ADDR_MSB(x>>4);
 	I2C_WrBuf(LcdCmd, lcdBuffer, sizeof(lcdBuffer));
@@ -823,6 +822,28 @@ void LCD_cursor(uint8_t x, uint8_t y)
 }
 
 
+
+
+
+void LCD_image(uint8_t* pimg, uint8_t x, uint8_t y, uint8_t width, uint8_t height)
+{
+	uint8_t i, mask;
+	uint8_t* p = pimg;
+	
+	mask = height%8;
+	
+	for(i=0; i<height/8; i++)
+	{
+		LCD_cursor(x, y+i*8);
+		I2C_WrBuf(LcdData, p, width);
+		p += width;
+	}
+	if(0 != mask)
+	{
+		LCD_cursor(x, y+i*8);
+		I2C_WrBuf(LcdData, p, width);
+	}
+}
 
 // знакогенератор CP1251
 const char chargen[] = { 0x00, 0x00, 0x00, 0x00, 0x00, // 0x20	пробел

@@ -7,7 +7,7 @@
 typedef enum __lcd_object_type
 {
 	LCD_STR = 1,
-	LCD_IMG,
+	LCD_IMG = 2,
 }lcdobj_t;
 
 typedef struct __lcd_string
@@ -43,9 +43,9 @@ typedef union __lcd_object
 		char* pstr;
 	};
 	struct{
-		lcdobj_t ;
-		uint8_t ;
-		uint8_t ;
+		lcdobj_t obj_type;
+		uint8_t x0;
+		uint8_t y0;
 		uint8_t width;
 		uint8_t height;
 		uint8_t* pimg;

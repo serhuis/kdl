@@ -14,6 +14,7 @@ typedef struct __lcd_string
 }lcd_string;
 */
 
+
 void LCD_Update (lcd_object** obj, uint8_t cnt)
 {
 	uint8_t i;
@@ -22,10 +23,10 @@ void LCD_Update (lcd_object** obj, uint8_t cnt)
 	{
 		if(LCD_STR == (tempobj->objtype))
 			LCD_string(tempobj->pstr, tempobj->x, tempobj->y, tempobj->font, INVERSE_TYPE_NOINVERSE);
-		
+		else 
+			if(LCD_IMG == (tempobj->objtype))
+				LCD_image(tempobj->pimg, tempobj->x, tempobj->y, tempobj->width, tempobj->height);
 		
 		++tempobj;
 	}
-
-
 }

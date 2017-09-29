@@ -26,14 +26,34 @@ int Init_Thread (void) {
 
 //Variable strings
 char str[50] = "";
+char strCurMode[10] = "Äåæóðíûé";
+const char strSensVal[10] = "1,5 äÁ";
+
+
+
+
+//images 
+uint8_t AR [] = {0
+};
 
 //LCD "objects"
-const lcd_object strcnt = {.objtype = LCD_STR, .pstr = str, .x = 0, .y = 20, .font = FONT_TYPE_5x8};
-const lcd_object strKdl = {.objtype = LCD_STR, .pstr = "ÊÄË", .x = 40, .y = 8, .font = FONT_TYPE_10x15};
-const lcd_object strPowBy = {.objtype = LCD_STR, .pstr = "powered by", .x = 0, .y = 55,.font = FONT_TYPE_5x8};
-const lcd_object strRTX = {.objtype = LCD_STR, .pstr = "RTX", .x = 65, .y = 55, .font = FONT_TYPE_5x15};
+const lcd_object strcnt = {.objtype = LCD_STR, .pstr = str, .x = 0, .y = 23, .font = FONT_TYPE_10x8};
+const lcd_object strmode = {.objtype = LCD_STR, .pstr = "Ðåæèì:", .x = 0, .y = 25, .font = FONT_TYPE_5x8};
+const lcd_object strÑmode = {.objtype = LCD_STR, .pstr = strCurMode, .x = 40, .y = 25, .font = FONT_TYPE_10x8};
+const lcd_object strKdl = {.objtype = LCD_STR, .pstr = "ÊÄË", .x = 40, .y = 15, .font = FONT_TYPE_10x15};
+const lcd_object strDL21 = {.objtype = LCD_STR, .pstr = "ÀÐÒÎÍ-ÄË 2.1", .x = 0, .y = 15, .font = FONT_TYPE_10x15};
+const lcd_object strThresh = {.objtype = LCD_STR, .pstr = "Ïîðîã:", .x = 0, .y = 55, .font = FONT_TYPE_5x8};
+const lcd_object strDB = {.objtype = LCD_STR, .pstr = "1 äÁ", .x = 65, .y = 55, .font = FONT_TYPE_5x15};
 
-lcd_object* MainFrame[] ={(lcd_object*)&strcnt, (lcd_object*)&strKdl, (lcd_object*)&strPowBy, (lcd_object*)&strRTX} ;
+
+//LCD Images
+//const lcd_object imgAr = {.obj_type = LCD_IMG, .pimg = (uint8_t*)AR, .x0 = 0, .y0 = 0, .width = 33, .height = 31};
+
+
+
+//LCD screens
+lcd_object* MainFrame[] ={(lcd_object*)&strmode, (lcd_object*)&strDL21, (lcd_object*)&strThresh, (lcd_object*)&strDB, (lcd_object*)&strÑmode} ;
+//lcd_object* Img[] = {(lcd_object*)&imgAr};
 
 void Thread_LCD(void const *pvParameters) {
 
@@ -53,7 +73,8 @@ void Thread_LCD(void const *pvParameters) {
 		
 //		LCD_string(str,  0,  0, FONT_TYPE_5x8, (i&INVERSE_TYPE_INVERSE));
 		
-		LCD_Update(MainFrame, 4);
+		LCD_Update(MainFrame, 5);
+//		LCD_Update(Img, 1);
 		
 		
 		
