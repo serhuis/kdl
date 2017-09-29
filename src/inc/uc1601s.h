@@ -48,10 +48,10 @@ typedef enum {
 } fill_type;
 
 typedef enum  {
-  FONT_TYPE_5x8,
-  FONT_TYPE_5x15,
-  FONT_TYPE_10x15,
-  FONT_TYPE_10x8,
+  FONT_TYPE_5x8 = 0x20,
+  FONT_TYPE_5x15 = 0x40,
+  FONT_TYPE_10x15 = 0x60,
+  FONT_TYPE_10x8 = 0x80,
 } font_type;
 
 void LCD_init (void);

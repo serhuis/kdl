@@ -29,7 +29,7 @@ Project File Date:  09/26/2017
 Build Project 'kdl' - Target 'Target 1'
 compiling main.c...
 linking...
-Program Size: Code=9744 RO-data=1608 RW-data=152 ZI-data=4312  
+Program Size: Code=14992 RO-data=1708 RW-data=252 ZI-data=5884  
 ".\Objects\kdl.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -39,16 +39,16 @@ Package Vendor: ARM
                 ::CMSIS:RTOS:1.0 (API)
                 CMSIS (Cortex Microcontroller Software Interface Standard)
    * Component: RTOS Version: 1.0
-   * Component: Keil RTX Version: 4.81.0
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.ARM_Compiler.1.1.1.pack
-                Keil::Compiler:I/O:STDOUT:ITM:1.1.0
+                Keil::Compiler:I/O:STDERR:ITM:1.1.0
                 Keil ARM Compiler extensions
-   * Component: STDOUT Variant: ITM Version: 1.1.0
-   * Component: STDIN Variant: ITM Version: 1.1.0
    * Component: STDERR Variant: ITM Version: 1.1.0
+   * Component: STDIN Variant: ITM Version: 1.1.0
+   * Component: STDOUT Variant: ITM Version: 1.1.0
    * Component: CORE Version: 5.0.0
+   * Component: Keil RTX Version: 4.81.0
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.STM32L1xx_DFP.1.0.2.pack
@@ -66,31 +66,31 @@ Package Vendor: Keil
 
    * Component: ::CMSIS:RTOS:1.0 (API)
 
-   * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.0
-      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
-      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
-      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
-      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM3.lib
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
-      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
-
-   * Component: Keil::Compiler:I/O:STDOUT:ITM:1.1.0
+   * Component: Keil::Compiler:I/O:STDERR:ITM:1.1.0
       Source file:   Source\retarget_io.c
 
    * Component: Keil::Compiler:I/O:STDIN:ITM:1.1.0
       Source file:   Source\retarget_io.c
 
-   * Component: Keil::Compiler:I/O:STDERR:ITM:1.1.0
+   * Component: Keil::Compiler:I/O:STDOUT:ITM:1.1.0
       Source file:   Source\retarget_io.c
 
    * Component: ARM::CMSIS:CORE:5.0.0
+
+   * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.0
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
+      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
+      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
+      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
+      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM3.lib
 
    * Component: Keil::Device:Startup:1.0.0
       Source file:   Device\Source\ARM\STM32L1xx_MD_OPT.s

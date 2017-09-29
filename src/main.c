@@ -26,25 +26,31 @@ int Init_Thread (void) {
 
 //Variable strings
 char str[50] = "";
-char strCurMode[10] = "Äåæóðíûé";
-const char strSensVal[10] = "1,5 äÁ";
-
+char strCurMode[10] = "Äåæ";
+char strSensVal[] = "1,5";
+char strDistVal[] = {" 60"};
 
 
 
 //images 
-uint8_t AR [] = {0
-};
+uint8_t AR [] = {0};
 
 //LCD "objects"
-const lcd_object strcnt = {.objtype = LCD_STR, .pstr = str, .x = 0, .y = 23, .font = FONT_TYPE_10x8};
-const lcd_object strmode = {.objtype = LCD_STR, .pstr = "Ðåæèì:", .x = 0, .y = 25, .font = FONT_TYPE_5x8};
-const lcd_object strÑmode = {.objtype = LCD_STR, .pstr = strCurMode, .x = 40, .y = 25, .font = FONT_TYPE_10x8};
-const lcd_object strKdl = {.objtype = LCD_STR, .pstr = "ÊÄË", .x = 40, .y = 15, .font = FONT_TYPE_10x15};
-const lcd_object strDL21 = {.objtype = LCD_STR, .pstr = "ÀÐÒÎÍ-ÄË 2.1", .x = 0, .y = 15, .font = FONT_TYPE_10x15};
-const lcd_object strThresh = {.objtype = LCD_STR, .pstr = "Ïîðîã:", .x = 0, .y = 55, .font = FONT_TYPE_5x8};
-const lcd_object strDB = {.objtype = LCD_STR, .pstr = "1 äÁ", .x = 65, .y = 55, .font = FONT_TYPE_5x15};
+const lcd_object strKdl = {.objtype = LCD_STR, .pstr = "ÊÄË", .x = 100, .y = 47, .font = FONT_TYPE_10x15, .inversion = INVERSE_TYPE_NOINVERSE};
+const lcd_object strcnt = {.objtype = LCD_STR, .pstr = str, .x = 0, .y = 30, .font = FONT_TYPE_10x8, .inversion = INVERSE_TYPE_NOINVERSE};
 
+ lcd_object objDL21 = {.objtype = LCD_STR, .pstr = " ÀÐÒÎÍ-ÄË 2.1 ", .x = 0, .y = 47, .font = FONT_TYPE_5x15, .inversion = INVERSE_TYPE_NOINVERSE};
+
+const lcd_object objmode = {.objtype = LCD_STR, .pstr = "Ðåæèì", .x = 0, .y = 20, .font = FONT_TYPE_10x8, .inversion = INVERSE_TYPE_NOINVERSE};
+const lcd_object objÑurmode = {.objtype = LCD_STR, .pstr = strCurMode, .x = 80, .y = 20, .font = FONT_TYPE_10x8, .inversion = INVERSE_TYPE_NOINVERSE};
+
+const lcd_object objDistance = {.objtype = LCD_STR, .pstr = "Äàëüí.", .x = 0, .y = 10, .font = FONT_TYPE_10x8, .inversion = INVERSE_TYPE_NOINVERSE};
+const lcd_object objDistValue = {.objtype = LCD_STR, .pstr = strDistVal, .x = 80, .y = 10, .font = FONT_TYPE_10x8, .inversion = INVERSE_TYPE_NOINVERSE};
+
+const lcd_object objThresh = {.objtype = LCD_STR, .pstr = "Ïîðîã", .x = 0, .y = 0, .font = FONT_TYPE_10x8, .inversion = INVERSE_TYPE_NOINVERSE};
+lcd_object objDB = {.objtype = LCD_STR, .pstr = &strSensVal[0], .x = 80, .y = 0, .font = FONT_TYPE_10x8};
+
+lcd_object objFIRE = {.objtype = LCD_STR, .pstr = " ÏÎÆÀÐ! ", .x = 20, .y = 15, .font = FONT_TYPE_10x15, .inversion = INVERSE_TYPE_NOINVERSE};
 
 //LCD Images
 //const lcd_object imgAr = {.obj_type = LCD_IMG, .pimg = (uint8_t*)AR, .x0 = 0, .y0 = 0, .width = 33, .height = 31};
@@ -52,7 +58,8 @@ const lcd_object strDB = {.objtype = LCD_STR, .pstr = "1 äÁ", .x = 65, .y = 55, 
 
 
 //LCD screens
-lcd_object* MainFrame[] ={(lcd_object*)&strmode, (lcd_object*)&strDL21, (lcd_object*)&strThresh, (lcd_object*)&strDB, (lcd_object*)&strÑmode} ;
+lcd_object* MainFrame[] ={(lcd_object*)&strKdl, (lcd_object*)&strcnt, (lcd_object*)&objDL21, (lcd_object*)&objThresh, (lcd_object*)&objDB, (lcd_object*)&objmode, (lcd_object*)&objÑurmode, (lcd_object*)&objDistance, (lcd_object*)&objDistValue, } ;
+lcd_object* FireFrame[] ={(lcd_object*)&strKdl, (lcd_object*)&objFIRE, (lcd_object*)&objDL21} ;
 //lcd_object* Img[] = {(lcd_object*)&imgAr};
 
 void Thread_LCD(void const *pvParameters) {
@@ -63,28 +70,25 @@ void Thread_LCD(void const *pvParameters) {
 
 	for (;;) {
 		printf("Thread_LCD started!\n\r");
-		
 		sprintf(str, "Ñ÷åò: %d", i++);
-
-//		LCD_line(LINE_TYPE_BLACK, 0, 0, LCD_WIDTH-1, 0);
-//		LCD_line(LINE_TYPE_BLACK, LCD_WIDTH-1, 0, LCD_WIDTH-1, LCD_HEIGHT-1);
-		//LCD_line(LINE_TYPE_BLACK, LCD_WIDTH-1, LCD_HEIGHT-1, 0, LCD_HEIGHT-1);
-//		LCD_line(LINE_TYPE_BLACK, 0, LCD_HEIGHT-1, 0,0);
 		
-//		LCD_string(str,  0,  0, FONT_TYPE_5x8, (i&INVERSE_TYPE_INVERSE));
+//		LCD_clear();
 		
-		LCD_Update(MainFrame, 5);
+		if(i%5)
+		{
+			LCD_Update(MainFrame, sizeof(MainFrame)/sizeof(lcd_object*));
+		}
+		else
+		{	
+//			LCD_Update(FireFrame, sizeof(FireFrame)/sizeof(lcd_object*));				
+		}
+		
 //		LCD_Update(Img, 1);
 		
+
+		objDL21.inversion ^= INVERSE_TYPE_INVERSE;
+		objFIRE.inversion ^= INVERSE_TYPE_INVERSE;
 		
-		
-/*
-		LCD_string("X= 8, Y= 10, X= 8, Y= 8", 0,  10, FONT_TYPE_5x8, INVERSE_TYPE_INVERSE);
-		LCD_string("X=16, Y=20", 0, 20, FONT_TYPE_5x8, INVERSE_TYPE_NOINVERSE);
-		LCD_string("X=24, Y=30", 0, 30, FONT_TYPE_5x8, INVERSE_TYPE_INVERSE);
-		LCD_string("X=32, Y=40", 0, 40, FONT_TYPE_5x8, INVERSE_TYPE_NOINVERSE);
-		LCD_string("X=40, Y=50", 0, 50, FONT_TYPE_5x8, INVERSE_TYPE_INVERSE);
-*/
 		osDelay (1000);
 
 

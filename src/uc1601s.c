@@ -522,7 +522,7 @@ void LCD_string(char *str, uint8_t x, uint8_t y, font_type font,
       break;
   }
 
-  LCD_cursor(x, (LCD_HEIGHT-9)-y);
+  LCD_cursor(x, y);
   while (str[ptr] != 0)
     LCD_symbol(str[ptr++], width, height, inverse);
 }
@@ -573,7 +573,7 @@ void LCD_symbol(char code, uint8_t width, uint8_t height, inverse_type inverse)
       vline = vline << vert_offset;
       if ((uint8_t) inverse)
       {
-        TOOL_SET_BIT(vline, vert_offset-1);
+//        TOOL_SET_BIT(vline, vert_offset/*-1*/);
       }
     }
     else //char-s of double (2) height
@@ -600,7 +600,7 @@ void LCD_symbol(char code, uint8_t width, uint8_t height, inverse_type inverse)
       vline = vline << vert_offset; //+1 коррекция сдвига символов двойной высоты (одна строка снизу)
       if ((uint8_t) inverse)
       {
-        TOOL_SET_BIT(vline, vert_offset-1);
+//        TOOL_SET_BIT(vline, vert_offset/*-1*/);
       }
     }
 
@@ -802,19 +802,19 @@ void LCD_cursor(uint8_t x, uint8_t y)
   cursorY = y;
   cursorX = x;
 
-/*
+
 	if (0==(y / 8))
     y = (y / 8);
   else
     y = (y / 8) - 1;
-*/
+
 // setup page, Set Column Address LSB,  Set Column Address MSB
 //    uint8_t buf[] = { 0b10110000 | y, x & 0b00001111, (x >> 4) | 0b00010000 };
 //		I2C_WrBuf(0x70, buf, sizeof(buf));
 
+//	y = (y>>3) ? (y>>3) : (y>>3)-1;
 
-
-	lcdBuffer[0] = SET_PAGE_ADDR(y>>3);
+	lcdBuffer[0] = SET_PAGE_ADDR(y);
 	lcdBuffer[1] = SET_COL_ADDR_LSB(x & 0x0f);
 	lcdBuffer[2] = SET_COL_ADDR_MSB(x>>4);
 	I2C_WrBuf(LcdCmd, lcdBuffer, sizeof(lcdBuffer));
